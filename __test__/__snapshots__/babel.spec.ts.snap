@@ -8,9 +8,11 @@ setTimeout(()=>{},2);setTimeout(()=>{},2);setTimeout(()=>{},2)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _setTimeout2ms = 2
-setTimeout(() => {}, _setTimeout2ms)
-setTimeout(() => {}, _setTimeout2ms)
-setTimeout(() => {}, _setTimeout2ms)
+var _line1column = 2,
+  _line1column2 = 2,
+  _line1column3 = 2
+setTimeout(() => {}, _line1column)
+setTimeout(() => {}, _line1column2)
+setTimeout(() => {}, _line1column3)
 
 `;

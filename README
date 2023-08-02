@@ -1,13 +1,32 @@
-## there are some useful scripts
-1. run your code with ts-node-dev
-    "start": "ts-node-dev ./src/index.ts -P tsconfig.json --no-cache",
-2. build your code with tsc
-    "build": "tsc -P tsconfig.json",
-3. test your code with jest
-    "test": "jest --config jestconfig.json --coverage",
-4. format your code with prettier
-    "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
-5. commit your code with git-cz
-    "commit": "git-cz",
-6. publish your npm package by pubulish script
-    "upload": "./scripts/publish.sh"
+## Desc
+提升setTimeout魔法值为顶层标识符。
+## Usage
+你需要安装babel的cli:
+```sh
+npm install @babel/core @babel/cli --save-dev
+```
+然后安装本插件:
+```sh
+npm install babel-plugin-zen --save-dev
+```
+在根目录新建文件并写入如下内容:
+```javascript
+module.exports={
+    plugins:['zen']
+}
+```
+执行命令，将src下的代码进行转换并保存在dist目录下:
+```sh
+npx babel src --out-dir dist
+```
+例如:
+```javascript
+setTimeout(() => console.log('zen'), 2023);
+```
+将转换为:
+```javascript
+var _line1column = 2023;
+setTimeout(function () {
+  return console.log('zen');
+}, _line1column);
+```

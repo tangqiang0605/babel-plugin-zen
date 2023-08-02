@@ -23,8 +23,9 @@ const HoistCommonString = declare<Options>(({ types }) => {
           typeof timeNode.value === 'number'
         ) {
           // 变量名。因为相同时间生成的变量名相同，所以会导致同时间都是用同一个变量
-          // 结构：map是一个对象，通过变量名作为key值可以得到一个{value,paths}对象
-          const key = 'setTimeout' + timeNode.value + 'ms'
+          // const key = 'setTimeout' + timeNode.value + 'ms'
+          const { line, column } = path.node.loc.start
+          const key = `line${line}column${column}`
           state.saveTimeoutMap = state.saveTimeoutMap || {}
           let mapValue = state.saveTimeoutMap[key]
           if (!mapValue) {
@@ -43,7 +44,7 @@ const HoistCommonString = declare<Options>(({ types }) => {
             // 生成标识符（变量）
             const id = path.scope.generateUidIdentifier(key)
             // 将节点添加到顶层作用域中
-            path.scope.push({ id, init: types.numberLiteral(value) })
+            path.scope.push({ id, init: types.numericLiteral(value) })
             // 替换变量
             paths.forEach((p) => (p.node.arguments[1] = id))
           }
