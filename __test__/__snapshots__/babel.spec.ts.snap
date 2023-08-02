@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`zen 1. using jest snapshots: 1. using jest snapshots 1`] = `
+
+setTimeout(()=>{},2);setTimeout(()=>{},2);setTimeout(()=>{},2)
+      
+      
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _setTimeout2ms = 2
+setTimeout(() => {}, _setTimeout2ms)
+setTimeout(() => {}, _setTimeout2ms)
+setTimeout(() => {}, _setTimeout2ms)
+
+`;
